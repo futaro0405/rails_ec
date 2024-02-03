@@ -12,6 +12,7 @@ RUN apt-get update -qq && \
   apt-get install -y build-essential \
   libpq-dev \
   postgresql-client \
+  vim \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
@@ -21,7 +22,10 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
-RUN bundle install
+ENV BUNDLER_VERSION 2.5.5
+RUN gem update --system \
+    && gem install bundler -v $BUNDLER_VERSION \
+    && bundle install -j 4
 
 COPY package.json yarn.lock ./
 RUN yarn install
