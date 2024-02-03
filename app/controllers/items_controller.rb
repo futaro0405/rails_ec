@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   def create
     item = Item.new(item_params)
     item.save!
-    redirect_to item_url, notice: "¤•iu#{item.name}v‚ð“o˜^‚µ‚Ü‚µ‚½B"
+    redirect_to item_url, notice: "#created new item. name: {item.name}"
   end
 
   def edit; end
