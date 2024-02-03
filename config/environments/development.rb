@@ -70,5 +70,5 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.web_console.permissions = '0.0.0.0/0'
-  config.hosts << "ecsite-web.onrender.com"
+  config.hosts << 'ecsite-web.onrender.com'
 end

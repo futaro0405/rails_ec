@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ItemsController < ApplicationController
   add_flash_types :success, :info, :warning, :danger
 
@@ -17,7 +19,7 @@ class ItemsController < ApplicationController
   def create
     item = Item.new(item_params)
     item.save!
-    redirect_to item_url, notice: "#created new item. name: {item.name}"
+    redirect_to item_url, notice: '#created new item. name: {item.name}'
   end
 
   def edit; end

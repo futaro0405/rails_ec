@@ -31,6 +31,6 @@ module Myapp
     end
     config.action_view.default_form_builder = 'ApplicationFormBuilder'
     config.active_storage.variant_processor = :mini_magick
-    config.hosts << "stg-ecsite.onrender.com"
+    config.hosts << 'stg-ecsite.onrender.com'
   end
 end
