@@ -3,6 +3,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'active_storage'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -29,5 +30,7 @@ module Myapp
       g.factory_bot false
     end
     config.action_view.default_form_builder = 'ApplicationFormBuilder'
+    config.active_storage.variant_processor = :mini_magick
+    config.hosts << 'stg-ecsite.onrender.com'
   end
 end
