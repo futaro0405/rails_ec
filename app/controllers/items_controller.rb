@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @related_item = Item.all.order('created_at DESC').first(4)
+    @related_items = Item.all.order('created_at DESC').first(4)
     @item = Item.find(params[:id])
   end
 
