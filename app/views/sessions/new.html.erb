@@ -2,12 +2,12 @@
 
 <% form_with scope: :session, local: true do |f| %>
   <div class="mb-3">
-    <%= f.label :email, 'メールアドレス' %>
-    <%= f.text_field :email, class: 'form-control', id: 'session_email' %>
+    <%= f.label :name, 'user name' %>
+    <%= f.text_field :name, class: 'form-control', id: 'session_name' %>
   </div>
   <div class="mb-3">
-    <%= f.label :password, 'パスワード' %>
+    <%= f.label :password, 'password' %>
     <%= f.password_field :password, class: 'form-control', id: 'session_password' %>
   </div>
-  <%= f.submit 'ログイン', class: 'btn btn-primary' %>
+  <%= f.submit 'login', class: 'btn btn-primary' %>
 <% end %>

@@ -12,7 +12,7 @@
         <div class="fs-5 mb-5">
           <span><%= @item.price %></span>
         </div>
-        <p class="lead"><%= @item.description %></p>
+        <p class="lead"><%= auto_link(simple_format(h(@item.description), {}, sanitize: false, wrapper_tag: "div")) %></p>
         <div class="d-flex">
           <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
           <button class="btn btn-outline-dark flex-shrink-0" type="button">
@@ -29,7 +29,7 @@
   <div class="container px-4 px-lg-5 mt-5">
     <h2 class="fw-bolder mb-4">Related products</h2>
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-      <%= render partial: 'shared/related', locals: { items: @related_items} %>
+      <%= render partial: 'shared/list', locals: { items: @related_items} %>
     </div>
   </div>
 </section>

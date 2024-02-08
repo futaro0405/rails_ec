@@ -17,3 +17,5 @@
   )
   item.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')), filename: 'dummy.jpg')
 end
+
+User.create!(name: 'admin', email: 'admin@example.com', passord: 'password', password_confirmation: 'password', admin: true)

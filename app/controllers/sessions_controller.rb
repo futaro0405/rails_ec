@@ -5,11 +5,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: session_params[:email])
+    user = User.find_by(name: session_params[:name])
 
     if user&.authenticate(session_params[:password])
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'ログインしました。'
+      flash.notice = "login"
+      redirect_to root_url
     else
       render :new
     end
@@ -17,12 +18,13 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url, notice: 'ログアウトしました。'
+      flash.notice = "logout"
+      redirect_to root_url
   end
 
   private
 
   def session_params
-    params.require(:session).permit(:email, :password)
+    params.require(:session).permit(:name, :password)
   end
 end

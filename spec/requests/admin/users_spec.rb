@@ -8,9 +8,9 @@ RSpec.describe "Admin::Users", type: :request do
     end
   end
 
-  describe "GET /edit" do
+  describe "GET /edt" do
     it "returns http success" do
-      get "/admin/users/edit"
+      get "/admin/users/edt"
       expect(response).to have_http_status(:success)
     end
   end

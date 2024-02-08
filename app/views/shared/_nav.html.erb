@@ -6,7 +6,9 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
         <% if currnet_user %>
           <li class="nav-item"><%= link_to 'items', items_path, class: 'nav-link' %>
-          <li class="nav-item"><%= link_to 'users', admin_users_path, class: 'nav-link' %>
+          <% if currnet_user.admin? %>
+            <li class="nav-item"><%= link_to 'users', admin_users_path, class: 'nav-link' %>
+          <% end %>
           <li class="nav-item"><%= link_to 'logout', logout_path, method: :delete, class: 'nav-link' %>
         <% else %>
           <li class="nav-item"><%= link_to 'login', login_path, class: 'nav-link' %>
