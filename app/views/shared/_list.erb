@@ -21,7 +21,7 @@
         <div class="text-center">
           <%= link_to 'View options', item_path(item), class: "btn btn-outline-dark mt-auto" %>
           <%= link_to 'edit', edit_item_path(item), class: "btn btn-outline-dark mt-auto" %>
-          <%= link_to 'delete', item, method: :delete, data: { confirm: "delete item. name: #{item.name}."} class: "btn btn-outline-dark mt-auto" %>
+          <%= link_to 'delete', item, data: { turbo_method: :delete }, class: "btn btn-outline-dark mt-auto" %>
         </div>
       </div>
     </div>

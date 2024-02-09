@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
       flash.notice = "created new item. name: #{@item.name}"
       redirect_to @item
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,15 +31,13 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item.update!(item_params)
-    flash.notice = "updated item. name: #{item.name}"
-    redirect_to items_url
+    @item.update!(item_params)
+    redirect_to items_url, notice: "updated item. name: #{@item.name}", status: :see_other
   end
 
   def destroy
-    item.destroy
-    flash.notice = "delete item. name: #{item.name}"
-    redirect_to items_url
+    @item.destroy
+    redirect_to items_url, notice: "delete item. name: #{@item.name}", status: :see_other
   end
 
   private
@@ -49,6 +47,6 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 end

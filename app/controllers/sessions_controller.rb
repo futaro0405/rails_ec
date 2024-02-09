@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       flash.notice = "login"
       redirect_to root_url
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

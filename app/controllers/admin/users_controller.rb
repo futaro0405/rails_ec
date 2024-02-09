@@ -20,7 +20,7 @@ class Admin::UsersController < ApplicationController
       flash.notice = "created new user. name: #{@user.name}"
       redirect_to admin_user_url(@user)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +35,7 @@ class Admin::UsersController < ApplicationController
       flash.notice = "update user. name: #{@user.name}"
       redirect_to admin_user_url(@user)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

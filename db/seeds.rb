@@ -12,10 +12,16 @@
   item = Item.create!(
     no: "BTS-00#{n}",
     name: "item-0#{n}",
-    price: 12_000,
+    price: 12000,
     description: 'test test test test test test'
   )
   item.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')), filename: 'dummy.jpg')
 end
 
-User.create!(name: 'admin', email: 'admin@example.com', passord: 'password', password_confirmation: 'password', admin: true)
+User.create!(
+  name: 'admin',
+  email: 'admin@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  admin: true
+)

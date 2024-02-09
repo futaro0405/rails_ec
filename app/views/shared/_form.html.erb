@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<% form_with model: item, local: true do |f| %>
+<%= form_with model: item, local: true do |f| %>
   <div class="mb-3">
     <%= form.label :no, class: "form-label" %>
     <%= form.text_field :no, class: "form-control", id: 'item_no' %>
