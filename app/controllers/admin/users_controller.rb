@@ -42,8 +42,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash.notice = "delete user. name: #{@user.name}"
-    redirect_to admin_users_url
+    redirect_to admin_users_url, notice: "delete user. name: #{@user.name}", status: :see_other
   end
 
   private

@@ -18,8 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-      flash.notice = "logout"
-      redirect_to root_url
+    redirect_to root_url, notice: "logout", status: :see_other
   end
 
   private

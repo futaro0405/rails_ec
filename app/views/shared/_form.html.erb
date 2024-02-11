@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<%= form_with model: item, local: true do |f| %>
+<%= form_with model: item, local: true do |form| %>
   <div class="mb-3">
     <%= form.label :no, class: "form-label" %>
     <%= form.text_field :no, class: "form-control", id: 'item_no' %>
@@ -22,6 +22,10 @@
   <div class="mb-3">
     <%= form.label :description, class: "form-label" %>
     <%= form.text_area :description, rows: 5, class: "form-control", id: 'item_description' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :image, class: "form-label" %>
+    <%= form.file_field :image, accept: "image/*", class: "form-control", id: 'item_image' %>
   </div>
   <%= form.submit nil, class: 'btn btn-primary' %>
 <% end %>

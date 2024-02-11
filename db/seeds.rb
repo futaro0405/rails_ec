@@ -25,3 +25,11 @@ User.create!(
   password_confirmation: 'password',
   admin: true
 )
+
+User.create!(
+  name: 'common',
+  email: 'common@example.com',
+  password: 'common',
+  password_confirmation: 'common',
+  admin: false
+)

@@ -1,7 +1,10 @@
 <section class="py-5">
   <div class="container px-4 px-lg-5 mt-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    <div class="row justify-content-center">
       <%= render partial: 'shared/list', locals: { items: @items } %>
+    </div>
+    <div class="row d-grid gap-2 col-6 mx-auto">
+      <%= link_to "new item" ,new_item_path, class: "btn btn-secondary mt-auto" %>
     </div>
   </div>
 </section>

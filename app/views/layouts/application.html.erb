@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render partial: 'shared/nav', locals: { currnet_user: @currnet_user } %>
+    <%= render partial: 'shared/nav' %>
     <%= render 'shared/header' %>
     <%= render 'shared/flash' %>
     <%= yield %>

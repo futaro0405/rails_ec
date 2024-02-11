@@ -20,8 +20,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      flash.notice = "created new item. name: #{@item.name}"
-      redirect_to @item
+      redirect_to @item, notice: "created new item. name: #{@item.name}", status: :see_other
     else
       render :new, status: :unprocessable_entity
     end

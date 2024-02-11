@@ -13,6 +13,7 @@ RUN apt-get update -qq && \
   libpq-dev \
   postgresql-client \
   vim \
+  imagemagick \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
