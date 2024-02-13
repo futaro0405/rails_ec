@@ -1,30 +1,30 @@
 require 'rails_helper'
 
-RSpec.describe "Admin::Users", type: :request do
+RSpec.describe "Admin::Products", type: :request do
   describe "GET /new" do
     it "returns http success" do
-      get "/admin/users/new"
+      get "/admin/products/new"
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /edt" do
+  describe "GET /edit" do
     it "returns http success" do
-      get "/admin/users/edt"
+      get "/admin/products/edit"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /show" do
     it "returns http success" do
-      get "/admin/users/show"
+      get "/admin/products/show"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /index" do
     it "returns http success" do
-      get "/admin/users/index"
+      get "/admin/products/index"
       expect(response).to have_http_status(:success)
     end
   end

@@ -1,0 +1,31 @@
+<% if item.errors.present? %>
+  <ul id="error_explanation">
+    <% item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: item, url: url, local: true do |form| %>
+  <div class="mb-3">
+    <%= form.label :no, class: "form-label" %>
+    <%= form.text_field :no, class: "form-control", id: 'item_no' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", id: 'item_name' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :price, class: "form-label" %>
+    <%= form.text_field :price, class: "form-control", id: 'item_price' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, rows: 5, class: "form-control", id: 'item_description' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :image, class: "form-label" %>
+    <%= form.file_field :image, accept: "image/*", class: "form-control", id: 'item_image' %>
+  </div>
+  <%= form.submit nil, class: 'btn btn-primary' %>
+<% end %>
