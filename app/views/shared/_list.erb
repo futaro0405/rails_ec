@@ -3,7 +3,7 @@
     <div class="card h-100">
       <!-- Product image-->
       <% if item.image.attached? %>
-        <%= image_tag item.image, class: "card-img-top" %>
+        <%= image_tag item.thumnail, class: "card-img-top" %>
       <% end %>
       <!-- Product details-->
       <div class="card-body p-4">
@@ -13,13 +13,15 @@
             <%= item.name %>
           </h5>
           <!-- Product price-->
-          <%= item.price %>
+          ￥<%= item.price %>
         </div>
       </div>
       <!-- Product actions-->
       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center">
-          <%= link_to 'View options', item_path(item), class: "btn btn-outline-dark mt-auto" %>
+        <div class="container text-center">
+          <div class="row py-1">
+            <%= link_to 'View details', item_path(item), class: "btn btn-outline-dark mt-auto" %>
+          </div>
         </div>
       </div>
     </div>

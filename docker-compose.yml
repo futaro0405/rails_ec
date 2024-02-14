@@ -18,6 +18,10 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    stdin_open: true
+    tty: true
+    env_file:
+      - ".env"
   js:
     image: rails_template:latest
     command: yarn build --watch

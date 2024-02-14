@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :items
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    resources :products
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :items
   root to: 'items#index'
 end
