@@ -1,48 +1,34 @@
 class CartsController < ApplicationController
-  before_action :setup_cart_item!, only: %i[add_item update_item delete_item]
+  before_action :set_cart_item, only: %i[add_item update_item destroy]
 
   # カート内アイテムの表示
-  def my_cart
+  def index
     @cart_items = current_cart.cart_items.includes([:item])
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    @count = @cart_items.count
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
   end
 
-  # アイテムの追加
   def add_item
     @cart_item ||= current_cart.cart_items.build(item_id: params[:item_id])
     @cart_item.quantity += params[:quantity].to_i
-    if  @cart_item.save
-      flash[:notice] = '商品が追加されました。'
-      redirect_to my_cart_path
+    if @cart_item.save
+      redirect_to carts_url, notice: "Add product to cart. name: #{@cart_item.name} quantity: #{@cart_item.quantity}", status: :see_other
     else
-      flash[:alert] = '商品の追加に失敗しました。'
-      redirect_to item_url(params[:item_id])
+      render carts_url, alert: "Deletion failed. Please try agein."
     end
   end
 
-  # アイテムの更新
-  def update_item
-    if @cart_item.update(quantity: params[:quantity].to_i)
-      flash[:notice] = 'カート内のギフトが更新されました'
-    else
-      flash[:alert] = 'カート内のギフトの更新に失敗しました'
-    end
-    redirect_to my_cart_path
-  end
-
-  # アイテムの削除
-  def delete_item
+  def destroy
     if @cart_item.destroy
-      flash[:notice] = 'カート内のギフトが削除されました'
+      redirect_to carts_url, notice: "Delete the item in cart. name: #{@cart_item.name}", status: :see_other
     else
-      flash[:alert] = '削除に失敗しました'
+      render carts_url, alert: "Deletion failed. Please try agein."
     end
-    redirect_to my_cart_path
   end
 
   private
 
-  def setup_cart_item!
+  def set_cart_item
     @cart_item = current_cart.cart_items.find_by(item_id: params[:item_id])
   end
 end
