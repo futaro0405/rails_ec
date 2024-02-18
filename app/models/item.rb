@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Item < ApplicationRecord
+  has_many :cart_item
   before_validation :set_nameless_name
   validates :name, presence: true, length: { maximum: 30 }
   validate :validate_name_not_including_comma

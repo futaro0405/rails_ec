@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :carts, only: [:index, :show]
-  get '/carts' => 'carts#index'
+  resources :carts
   post '/add_item' => 'carts#add_item'
   delete '/delete_item' => 'carts#delete_item'
 

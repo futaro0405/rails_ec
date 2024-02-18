@@ -13,12 +13,11 @@
           <span><%= @item.price %></span>
         </div>
         <p class="lead"><%= auto_link(simple_format(h(@item.description), {}, sanitize: false, wrapper_tag: "div")) %></p>
-        <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
-            <i class="bi-cart-fill me-1"></i>
-            Add to cart
-          </button>
+        <div class="d-flex ">
+          <%= form_with model: @cart_item, url: add_item_path, local: true do |f| %>
+            <%= f.text_field :quantity, class: "form-control text-center me-3", id: 'cart_quantity', style: "max-width: 3rem" %>
+            <%= f.submit "Add to cart", class: 'btn btn-outline-dark flex-shrink-0' %>
+          <% end %>
         </div>
       </div>
     </div>
