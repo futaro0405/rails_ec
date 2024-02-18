@@ -13,7 +13,15 @@ class CartsController < ApplicationController
     if @cart_item.save
       redirect_to carts_url, notice: "Add product to cart. name: #{@cart_item.item.name} quantity: #{@cart_item.quantity}", status: :see_other
     else
-      render carts_url, alert: "Deletion failed. Please try agein."
+      redirect_to carts_url, notice: "Deletion failed. Please try agein."
+    end
+  end
+
+  def update_item
+    if @cart_item.update(quantity: params[:quantity].to_i)
+      redirect_to carts_url, notice: "Add product to cart. name: #{@cart_item.item.name} quantity: #{@cart_item.quantity}", status: :see_other
+    else
+      redirect_to carts_url, notice: "Deletion failed. Please try agein."
     end
   end
 
