@@ -18,10 +18,11 @@ class CartsController < ApplicationController
   end
 
   def update_item
-    if @cart_item.update(quantity: params[:quantity].to_i)
-      redirect_to carts_url, notice: "Add product to cart. name: #{@cart_item.item.name} quantity: #{@cart_item.quantity}", status: :see_other
+    unless @cart_item
+      add_item
     else
-      redirect_to carts_url, notice: "Deletion failed. Please try agein."
+      @cart_item.increment!(:quantity, params[:quantity].to_i)
+      redirect_to carts_url, notice: "Add product to cart. name: #{@cart_item.item.name} quantity: #{@cart_item.quantity}", status: :see_other
     end
   end
 
@@ -35,6 +36,10 @@ class CartsController < ApplicationController
   end
 
   private
+
+  def cart_params
+    params.require(:cart_item).permit(:quantity)
+  end
 
   def set_cart_item
     @cart_item = current_cart.cart_items.find_by(item_id: params[:item_id])
