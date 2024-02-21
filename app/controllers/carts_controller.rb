@@ -2,8 +2,7 @@
 
 class CartsController < ApplicationController
   include CurrentCart
-
-  before_action :set_cart_item, only: %i[add_item update_item]
+  before_action :set_cart_item, only: %i[create update]
 
   def index
     @cart_items = CartItem.joins(:item).where(cart_id: session[:cart_id]).select('cart_items.*, items.*')
@@ -11,24 +10,24 @@ class CartsController < ApplicationController
     @total = current_cart.cart_items.inject(0) { |sum, item| sum + item.sum_price }
   end
 
-  def add_item
+  def create
     @cart_item ||= current_cart.cart_items.build(item_id: params[:item_id])
     @cart_item.quantity += params[:quantity].to_i
     if @cart_item.save
       redirect_to carts_url,
-                  notice: "Add product to cart. name: #{@cart_item.item.name} quantity: #{@cart_item.quantity}", status: :see_other
+                  notice: "Add product to cart. name: #{@cart_item.item.name} quantity: #{@cart_item.quantity}"
     else
       redirect_to carts_url, notice: 'Deletion failed. Please try agein.'
     end
   end
 
-  def update_item
+  def update
     if @cart_item
-      @cart_item.increment!(:quantity, params[:quantity].to_i)
+      @cart_item.increment(:quantity, params[:quantity].to_i)
       redirect_to carts_url,
-                  notice: "Add product to cart. name: #{@cart_item.item.name} quantity: #{@cart_item.quantity}", status: :see_other
+                  notice: "Add product to cart. name: #{@cart_item.item.name} quantity: #{@cart_item.quantity}"
     else
-      add_item
+      create
     end
   end
 

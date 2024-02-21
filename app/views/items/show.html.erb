@@ -14,7 +14,7 @@
         </div>
         <p class="lead"><%= auto_link(simple_format(h(@item.description), {}, sanitize: false, wrapper_tag: "div")) %></p>
         <div class="d-flex ">
-          <%= form_with model: @cart_item, url: update_item_path(item_id: @item.id), local: true do |f| %>
+          <%= form_with model: @cart_item, url: carts_path(item_id: @item.id), local: true do |f| %>
             <%= f.text_field :quantity, class: "form-control text-center me-3", id: 'cart_quantity', style: "max-width: 3rem" %>
             <%= f.submit nil, class: 'btn btn-outline-dark flex-shrink-0' %>
           <% end %>
