@@ -12,6 +12,7 @@ ja:
       user: ユーザー
       cart: カート
       cart_item: カート商品
+      order: オーダー
     attributes:
       item:
         no: ナンバー
@@ -39,6 +40,19 @@ ja:
         quantity: 数量
         created_at: 登録日時
         updated_at: 更新日時
+      order:
+        firstname: 名前
+        lastname: 苗字
+        username: ユーザー名
+        email: メールアドレス
+        address1: アドレス1
+        address2: アドレス2
+        country: 居住地
+        zip: 郵便番号
+        ccname: カード名義
+        ccnumber: カード番号
+        ccexpiration: 有効期限
+        cccvv: セキュリティコード
   date:
     abbr_day_names:
     - 日
