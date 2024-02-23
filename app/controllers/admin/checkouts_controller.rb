@@ -1,4 +1,14 @@
-class OrdersController < ApplicationController
+class Admin::CheckoutsController < ApplicationController
+  before_action :basic_auth
+  before_action :set_order, only: %i[show]
+
+  def index
+    @orders = Order.all.order(created_at: :desc)
+  end
+
+  def show
+    @OrderDetail = @order.OrderDetail
+  end
 
   def create
     @order = Order.new(order_params)
@@ -17,6 +27,16 @@ class OrdersController < ApplicationController
 
   private
 
+  def set_order
+    @order = Order.find(params[:id])
+  end
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
+    end
+  end
+
+  
   def order_params
     params.require(:order).permit(
       :firstname,

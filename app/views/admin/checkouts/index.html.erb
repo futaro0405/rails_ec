@@ -1,0 +1,33 @@
+<h1>item index</h1>
+<%= link_to '新規登録', new_admin_product_path, class: 'btn btn-primary' %>
+<div class="mb-3">
+  <table class="table table-hover">
+    <thead class="thead-default">
+      <tr>
+        <th scope="col"><%= Item.human_attribute_name(:no) %></th>
+        <th scope="col"><%= Item.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Item.human_attribute_name(:price) %></th>
+        <th scope="col"><%= Item.human_attribute_name(:description) %></th>
+        <th scope="col"><%= Item.human_attribute_name(:created_at) %></th>
+        <th scope="col"><%= Item.human_attribute_name(:updated_at) %></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= link_to item.no, admin_product_path(item) %></td>
+          <td><%= link_to item.name, admin_product_path(item) %></td>
+          <td><%= link_to item.price, admin_product_path(item) %></td>
+          <td><%= link_to item.description, admin_product_path(item) %></td>
+          <td><%= link_to item.created_at, admin_product_path(item) %></td>
+          <td><%= link_to item.updated_at, admin_product_path(item) %></td>
+          <td>
+            <%= link_to '編集', edit_admin_product_path(item), class: 'btn btn-primary mr-3' %>
+            <%= link_to '削除', admin_product_path(item), data: { turbo_method: :delete, turbo_confirm: "商品「#{item.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

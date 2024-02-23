@@ -67,31 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_21_090143) do
     t.index ["name"], name: "index_items_on_name", unique: true
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.string "firstname", null: false
-    t.string "lastname", null: false
-    t.string "username", null: false
-    t.string "email", null: false
-    t.string "address1", null: false
-    t.string "address2"
-    t.string "country", null: false
-    t.string "zip", null: false
-    t.string "ccname", null: false
-    t.integer "ccnumber", null: false
-    t.integer "ccexpiration", null: false
-    t.integer "cccvv", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.integer "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_items", "carts"
