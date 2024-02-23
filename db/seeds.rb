@@ -9,11 +9,11 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 5.times do |n|
-  item = Item.create!(
-    no: "BTS-00#{n}",
-    name: "item-0#{n}",
-    price: 12_000,
-    description: 'test test test test test test'
-  )
-  item.image.attach(io: File.open(Rails.root.join('app/assets/images/dummy.jpg')), filename: 'dummy.jpg')
+  Item.find_or_create_by!(name: "item-0#{n}") do |item|
+    item.no = "BTS-00#{n}",
+    item.name = "item-0#{n}",
+    item.price = 12_000,
+    item.description = 'dummytext dummytext dummytext dummytext'
+    item.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/dummy.jpg"), filename:"dummy.jpg")
+  end
 end
