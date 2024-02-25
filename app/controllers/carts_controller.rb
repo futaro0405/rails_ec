@@ -9,6 +9,7 @@ class CartsController < ApplicationController
     @cart_items = CartItem.joins(:item).where(cart_id: session[:cart_id]).select('cart_items.*, items.*')
     @count = @current_cart.cart_items.count
     @total = @current_cart.cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    @order = Order.new
   end
 
   def create

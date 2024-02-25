@@ -1,5 +1,5 @@
 class Admin::CheckoutsController < ApplicationController
-  before_action :basic_auth
+  before_action :basic_auth, only: %i[index show]
   before_action :set_order, only: %i[show]
 
   def index
@@ -7,7 +7,7 @@ class Admin::CheckoutsController < ApplicationController
   end
 
   def show
-    @OrderDetail = @order.OrderDetail
+    @OrderDetail = @order.order_details
   end
 
   def create
@@ -17,6 +17,7 @@ class Admin::CheckoutsController < ApplicationController
       redirect_to root_path, notice: "購入ありがとうございます", status: :see_other
     else
       render carts_path, status: :unprocessable_entity
+      flash.now[:notice] = "失敗"
     end
   end
 
@@ -30,13 +31,7 @@ class Admin::CheckoutsController < ApplicationController
   def set_order
     @order = Order.find(params[:id])
   end
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
-    end
-  end
 
-  
   def order_params
     params.require(:order).permit(
       :firstname,
@@ -52,5 +47,11 @@ class Admin::CheckoutsController < ApplicationController
       :ccexpiration,
       :cccvv
     )
+  end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
+    end
   end
 end

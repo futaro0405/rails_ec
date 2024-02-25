@@ -38,7 +38,7 @@
     </div>
     <div class="col-md-7 col-lg-8">
       <h4 class="mb-3">Billing address</h4>
-      <%= form_with model: @order, url: orders_path, local: true, class: "needs-validation" do |f| %>
+      <%= form_with model: @order, url: admin_checkouts_path, local: true, class: "needs-validation" do |f| %>
         <div class="row g-3">
           <div class="col-sm-6">
             <%= f.label :firstname, class: "form-label" %>

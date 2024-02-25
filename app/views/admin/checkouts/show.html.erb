@@ -1,38 +1,68 @@
-<h1>商品詳細</h1>
+<h1>order show</h1>
 <nav class="nav justify-content-end">
-  <%= link_to '一覧', admin_products_path, class: 'nav-link' %>
+  <%= link_to '一覧', admin_checkouts_path, class: 'nav-link' %>
 </nav>
 <table class="table table-hover">
   <tbody>
     <tr>
-      <th><%= Item.human_attribute_name(:id) %></th>
-      <td><%= @item.id %></td>
+      <th><%= Order.human_attribute_name(:firstname) %></th>
+      <td><%= @order.firstname %></td>
     </tr>
     <tr>
-      <th><%= Item.human_attribute_name(:no) %></th>
-      <td><%= @item.no %></td>
+      <th><%= Order.human_attribute_name(:lastname) %></th>
+      <td><%= @order.lastname %></td>
     </tr>
     <tr>
-      <th><%= Item.human_attribute_name(:name) %></th>
-      <td><%= @item.name %></td>
+      <th><%= Order.human_attribute_name(:username) %></th>
+      <td><%= @order.username %></td>
     </tr>
     <tr>
-      <th><%= Item.human_attribute_name(:price) %></th>
-      <td><%= @item.price %></td>
+      <th><%= Order.human_attribute_name(:email) %></th>
+      <td><%= @order.email %></td>
     </tr>
     <tr>
-      <th><%= Item.human_attribute_name(:description) %></th>
-      <td><%= @item.description %></td>
+      <th><%= Order.human_attribute_name(:address1) %></th>
+      <td><%= @order.address1 %></td>
     </tr>
     <tr>
-      <th><%= Item.human_attribute_name(:created_at) %></th>
-      <td><%= @item.created_at %></td>
+      <th><%= Order.human_attribute_name(:address2) %></th>
+      <td><%= @order.address2 %></td>
     </tr>
     <tr>
-      <th><%= Item.human_attribute_name(:updated_at) %></th>
-      <td><%= @item.updated_at %></td>
+      <th><%= Order.human_attribute_name(:country) %></th>
+      <td><%= @order.country %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:zip) %></th>
+      <td><%= @order.zip %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:ccname) %></th>
+      <td><%= @order.ccname %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:ccnumber) %></th>
+      <td><%= @order.ccnumber %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:ccexpiration) %></th>
+      <td><%= @order.ccexpiration %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:cccvv) %></th>
+      <td><%= @order.cccvv %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:created_at) %></th>
+      <td><%= @order.created_at %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:updated_at) %></th>
+      <td><%= @order.updated_at %></td>
+    </tr>
+    <tr>
+      <th><%= OrderDetail.human_attribute_name(:name) %></th>
+      <td><%= @OrderDetail.name %></td>
     </tr>
   </tbody>
 </table>
-<%= link_to '編集', edit_admin_product_path, class: 'btn btn-primary mr-3' %>
-<%= link_to '削除', admin_product_path(@item), data: { turbo_method: :delete, turbo_confirm: "商品「#{@item.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger' %>
