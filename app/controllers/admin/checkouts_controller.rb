@@ -1,4 +1,6 @@
 class Admin::CheckoutsController < ApplicationController
+  include CurrentCart
+  before_action :set_current_cart
   before_action :basic_auth, only: %i[index show]
   before_action :set_order, only: %i[show]
 
@@ -12,12 +14,26 @@ class Admin::CheckoutsController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @cart_items = CartItem.joins(:item).where(cart_id: session[:cart_id]).select('items.name, items.price, cart_items.quantity')
+
+    @cart_items.each do |n|
+      @OrderDetail = @order.order_details.build(
+        name: n.name,
+        quantity: n.quantity,
+        price: n.price
+      )
+      @OrderDetail.save
+    end
 
     if @order.save
+      @delete_items = CartItem.where(cart_id: session[:cart_id])
+      @delete_items.each do |n|
+        n.destroy(item_id: n.item_id)
+      end
       redirect_to root_path, notice: "購入ありがとうございます", status: :see_other
     else
-      render carts_path, status: :unprocessable_entity
       flash.now[:notice] = "失敗"
+      render carts_path, status: :unprocessable_entity
     end
   end
 
@@ -53,5 +69,10 @@ class Admin::CheckoutsController < ApplicationController
     authenticate_or_request_with_http_basic do |username, password|
       username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
     end
+  end
+
+  def set_current_cart
+    @current_cart = current_cart
+    session[:cart_id] ||= @current_cart.id
   end
 end
