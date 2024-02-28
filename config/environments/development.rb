@@ -71,4 +71,15 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.web_console.permissions = '0.0.0.0/0'
   config.hosts << 'ecsite-web.onrender.com'
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'amb2eme6@gmail.com',
+    port:                  587,
+    domain:               'gmail.com',
+    user_name:            'amb2eme6@gmail.com',
+    password:             '@mb2Eme6',
+    authentication:       'plain',
+    enable_starttls_auto:  true
+  }
 end

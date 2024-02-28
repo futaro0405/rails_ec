@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_22_073605) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_27_133033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_22_073605) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inquiries", force: :cascade do |t|
+    t.string "name"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "no", null: false
     t.string "name", limit: 30, null: false
@@ -90,14 +97,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_22_073605) do
     t.integer "ccnumber", null: false
     t.integer "ccexpiration", null: false
     t.integer "cccvv", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
