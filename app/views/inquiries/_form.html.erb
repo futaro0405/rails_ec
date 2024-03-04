@@ -1,0 +1,17 @@
+<%= form_with(model: inquiry) do |form| %>
+  <% if inquiry.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h2>
+
+      <ul>
+        <% inquiry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
