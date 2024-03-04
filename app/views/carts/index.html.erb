@@ -12,7 +12,7 @@
               <h6 class="my-0"><%= cart_item.name %></h6>
               <small class="text-body-secondary"><%= cart_item.no %></small>
             </div>
-            <%= link_to 'delete', cart_item_path(cart_item), data: { turbo_method: :delete, turbo_confirm: "商品「#{cart_item.name}」を削除します。よろしいですか？"}, class: "btn btn-secondary mt-auto" %>
+            <%= link_to 'delete', cart_path(cart_item), data: { turbo_method: :delete, turbo_confirm: "商品「#{cart_item.name}」を削除します。よろしいですか？"}, class: "btn btn-secondary mt-auto" %>
             <span class="text-body-secondary"><%= cart_item.quantity %></span>
             <span class="text-body-secondary">$<%= cart_item.price * cart_item.quantity %></span>
           </li>

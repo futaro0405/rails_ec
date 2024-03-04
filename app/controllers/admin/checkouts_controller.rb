@@ -25,10 +25,11 @@ class Admin::CheckoutsController < ApplicationController
       @OrderDetail.save
     end
 
-    @cart = Cart.find_by(id: session[:cart_id])
-    @cart.destroy
-
     if @order.save
+      @delete_items = CartItem.where(cart_id: session[:cart_id])
+      @delete_items.each do |n|
+        n.destroy(item_id: n.item_id)
+      end
       redirect_to root_path, notice: "購入ありがとうございます", status: :see_other
     else
       flash.now[:notice] = "失敗"
