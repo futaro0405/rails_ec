@@ -20,8 +20,6 @@ services:
       - db
     stdin_open: true
     tty: true
-    env_file:
-      - ".env"
   js:
     image: rails_template:latest
     command: yarn build --watch

@@ -9,6 +9,9 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       item: 商品
+      user: ユーザー
+      cart: カート
+      cart_item: カート商品
     attributes:
       item:
         no: ナンバー
@@ -25,6 +28,15 @@ ja:
         admin: 管理者権限
         password: パスワード
         password_confirmation: パスワード（確認）
+        created_at: 登録日時
+        updated_at: 更新日時
+      cart:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+      cart_item:
+        id: ID
+        quantity: 数量
         created_at: 登録日時
         updated_at: 更新日時
   date:
