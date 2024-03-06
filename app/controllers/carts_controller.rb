@@ -14,7 +14,6 @@ class CartsController < ApplicationController
     @total = @current_cart.cart_items.inject(0) { |sum, item| sum + item.sum_price }
     if @adaptedCode.present?
       @total -= @adaptedCode.discount
-      render  :index
       session.delete(:code)
     end
   end
