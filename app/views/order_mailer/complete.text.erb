@@ -1,3 +1,52 @@
-Order#complete
+購入いただきありがとうございます。
 
-<%= @greeting %>, find me in app/views/order_mailer/complete.text.erb
+決済情報
+<%= Order.human_attribute_name(:firstname) %>
+<%= @order.firstname %>
+
+<%= Order.human_attribute_name(:lastname) %>
+<%= @order.lastname %>
+
+<%= Order.human_attribute_name(:username) %>
+<%= @order.username %>
+
+<%= Order.human_attribute_name(:email) %>
+<%= @order.email %>
+
+<%= Order.human_attribute_name(:address1) %>
+<%= @order.address1 %>
+
+<%= Order.human_attribute_name(:address2) %>
+<%= @order.address2 %>
+
+<%= Order.human_attribute_name(:country) %>
+<%= @order.country %>
+
+<%= Order.human_attribute_name(:zip) %>
+<%= @order.zip %>
+
+<%= Order.human_attribute_name(:ccname) %>
+<%= @order.ccname %>
+
+<%= Order.human_attribute_name(:ccnumber) %>
+<%= @order.ccnumber %>
+
+<%= Order.human_attribute_name(:ccexpiration) %>
+<%= @order.ccexpiration %>
+
+<%= Order.human_attribute_name(:cccvv) %>
+<%= @order.cccvv %>
+
+
+購入商品
+
+<% @OrderDetail.each do |item| %>
+<%= OrderDetail.human_attribute_name(:name) %></th>
+<%= item.name %>
+
+<%= OrderDetail.human_attribute_name(:quantity) %>
+<%= item.quantity %>
+
+<%= OrderDetail.human_attribute_name(:price) %>
+<%= item.price %>
+<% end %>
