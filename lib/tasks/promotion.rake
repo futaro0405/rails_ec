@@ -1,11 +1,13 @@
 namespace :promotion do
   desc 'create promotion code'
-  task :create_code do
+  task create_code: :environment do
     records = []
+    chars = ('A'..'Z').to_a + (0..9).to_a
+
     10.times do
-      codes.push(
+      records.push(
         {
-          code: 7.times.map{ [('A'..'Z'), ('0'..'9')].to_a.sample }.join,
+          code: 7.times.map{ chars.sample }.join,
           discount: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].sample
         }
       )
