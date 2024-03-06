@@ -5,9 +5,9 @@ class OrderMailer < ApplicationMailer
   #
   #   en.order_mailer.complete.subject
   #
-  def complete(args)
-    @order = args[:order]
-    @OrderDetail  = args[:OrderDetail]
+  def complete(order, order_detail)
+    @order = order
+    @OrderDetail  = order_detail
 
     email = @order.email
 
