@@ -4,6 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+    <p>購入いただきありがとうございます。</p>
+
+    <p>決済情報</p>
     <table class="table table-hover">
       <tbody>
         <tr>
@@ -54,14 +57,26 @@
           <th><%= Order.human_attribute_name(:cccvv) %></th>
           <td><%= @order.cccvv %></td>
         </tr>
-        <tr>
-          <th><%= Order.human_attribute_name(:created_at) %></th>
-          <td><%= @order.created_at %></td>
-        </tr>
-        <tr>
-          <th><%= Order.human_attribute_name(:updated_at) %></th>
-          <td><%= @order.updated_at %></td>
-        </tr>
+      </tbody>
+    </table>
+
+    <p>購入商品</p>
+    <table class="table table-hover">
+      <tbody>
+        <% @OrderDetail.each do |item| %>
+          <tr>
+            <th><%= OrderDetail.human_attribute_name(:name) %></th>
+            <td><%= item.name %></td>
+          </tr>
+          <tr>
+            <th><%= OrderDetail.human_attribute_name(:quantity) %></th>
+            <td><%= item.quantity %></td>
+          </tr>
+          <tr>
+            <th><%= OrderDetail.human_attribute_name(:price) %></th>
+            <td><%= item.price %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </body>
