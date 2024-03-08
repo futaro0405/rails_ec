@@ -25,7 +25,7 @@ class Admin::CheckoutsController < ApplicationController
       @OrderDetail.save
     end
 
-    OrderMailer.complete(@order, @OrderDetail).deliver_later
+    OrderMailer.complete(@order, @cart_items).deliver_later
 
     @cart = Cart.find_by(id: session[:cart_id])
     @cart.destroy
