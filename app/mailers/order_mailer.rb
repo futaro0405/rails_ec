@@ -5,13 +5,12 @@ class OrderMailer < ApplicationMailer
   #
   #   en.order_mailer.complete.subject
   #
-  def complete(order, order_detail)
+  def complete(order)
     @order = order
-    @OrderDetail  = order_detail
 
     @email = @order.email
 
-    puts "email: #{@email} @OrderDetail: #{@OrderDetail}"
+    puts "email: #{@email}"
 
     mail(to: @email, subject: 'Your order has been completed')
   end

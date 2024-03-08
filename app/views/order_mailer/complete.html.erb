@@ -59,25 +59,5 @@
         </tr>
       </tbody>
     </table>
-
-    <h3>購入商品</h3>
-    <table class="table table-hover">
-      <tbody>
-        <% @OrderDetail.each do |item| %>
-          <tr>
-            <th><%= OrderDetail.human_attribute_name(:name) %></th>
-            <td><%= item.name %></td>
-          </tr>
-          <tr>
-            <th><%= OrderDetail.human_attribute_name(:quantity) %></th>
-            <td><%= item.quantity %></td>
-          </tr>
-          <tr>
-            <th><%= OrderDetail.human_attribute_name(:price) %></th>
-            <td><%= item.price %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
   </body>
 </html>

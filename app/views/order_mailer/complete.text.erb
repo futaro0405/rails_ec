@@ -36,17 +36,3 @@
 
 <%= Order.human_attribute_name(:cccvv) %>
 <%= @order.cccvv %>
-
-
-購入商品
-
-<% @OrderDetail.each do |item| %>
-<%= OrderDetail.human_attribute_name(:name) %></th>
-<%= item.name %>
-
-<%= OrderDetail.human_attribute_name(:quantity) %>
-<%= item.quantity %>
-
-<%= OrderDetail.human_attribute_name(:price) %>
-<%= item.price %>
-<% end %>
