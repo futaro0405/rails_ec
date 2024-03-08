@@ -9,8 +9,10 @@ class OrderMailer < ApplicationMailer
     @order = order
     @OrderDetail  = order_detail
 
-    email = @order.email
+    @email = @order.email
 
-    mail(to: email, subject: 'Your order has been completed')
+    puts "email: #{@email} @OrderDetail: #{@OrderDetail}"
+
+    mail(to: @email, subject: 'Your order has been completed')
   end
 end
