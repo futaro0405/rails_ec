@@ -32,5 +32,9 @@ module Myapp
     config.action_view.default_form_builder = 'ApplicationFormBuilder'
     config.active_storage.variant_processor = :mini_magick
     config.hosts << 'stg-ecsite.onrender.com'
+
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+    # production環境でもpreviewが可能にする
+    config.action_mailer.show_previews = true
   end
 end
