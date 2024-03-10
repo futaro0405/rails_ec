@@ -71,7 +71,7 @@
 
 <table class="table table-hover">
   <tbody>
-    <% @OrderDetail.each do |item| %>
+    <% @order_detail.each do |item| %>
       <tr>
         <th><%= OrderDetail.human_attribute_name(:name) %></th>
         <td><%= item.name %></td>
