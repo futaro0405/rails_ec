@@ -44,11 +44,6 @@ class CartsController < ApplicationController
 
   private
 
-  def set_current_cart
-    @current_cart = current_cart
-    session[:cart_id] ||= @current_cart.id
-  end
-
   def set_cart_item
     @cart_item = current_cart.cart_items.find_by(item_id: params[:item_id])
   end
