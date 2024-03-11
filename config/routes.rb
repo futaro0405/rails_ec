@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products
     resources :checkouts
+    resources :promotions, only: %i[index]
   end
 
   root to: 'items#index'
