@@ -9,6 +9,7 @@ class CartsController < ApplicationController
     @cart_items = CartItem.joins(:item).where(cart_id: session[:cart_id]).select('cart_items.*, items.*')
     @count = @current_cart.cart_items.count
     @total = @current_cart.cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    @order = Order.new
   end
 
   def create
@@ -33,20 +34,15 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    @cart_item = @current_cart.cart_items.find_by(item_id: params[:id])
-    if @cart_item.destroy
-      redirect_to carts_url, notice: "Delete the item in cart. name: #{@cart_item.id}", status: :see_other
+    @cart = Cart.find_by(id: params[:id])
+    if @cart.destroy
+      redirect_to carts_url, notice: "Delete the item in cart. name: #{@cart.id}", status: :see_other
     else
       render carts_url, alert: 'Deletion failed. Please try agein.'
     end
   end
 
   private
-
-  def set_current_cart
-    @current_cart = current_cart
-    session[:cart_id] ||= @current_cart.id
-  end
 
   def set_cart_item
     @cart_item = current_cart.cart_items.find_by(item_id: params[:item_id])

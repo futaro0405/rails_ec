@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>購入いただきありがとうございます。</h2>
+
+    <h3>決済情報</h3>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th><%= Order.human_attribute_name(:firstname) %></th>
+          <td><%= @order.firstname %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:lastname) %></th>
+          <td><%= @order.lastname %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:username) %></th>
+          <td><%= @order.username %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:email) %></th>
+          <td><%= @order.email %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:address1) %></th>
+          <td><%= @order.address1 %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:address2) %></th>
+          <td><%= @order.address2 %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:country) %></th>
+          <td><%= @order.country %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:zip) %></th>
+          <td><%= @order.zip %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:ccname) %></th>
+          <td><%= @order.ccname %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:ccnumber) %></th>
+          <td><%= @order.ccnumber %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:ccexpiration) %></th>
+          <td><%= @order.ccexpiration %></td>
+        </tr>
+        <tr>
+          <th><%= Order.human_attribute_name(:cccvv) %></th>
+          <td><%= @order.cccvv %></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

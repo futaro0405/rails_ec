@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_14_132755) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_22_073605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,8 +67,36 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_14_132755) do
     t.index ["name"], name: "index_items_on_name", unique: true
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "quantity", null: false
+    t.integer "price", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "firstname", null: false
+    t.string "lastname", null: false
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "address1", null: false
+    t.string "address2"
+    t.string "country", null: false
+    t.string "zip", null: false
+    t.string "ccname", null: false
+    t.integer "ccnumber", null: false
+    t.integer "ccexpiration", null: false
+    t.integer "cccvv", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "items"
+  add_foreign_key "order_details", "orders"
 end

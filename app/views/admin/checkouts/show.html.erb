@@ -1,0 +1,89 @@
+<h1>order show</h1>
+<nav class="nav justify-content-end">
+  <%= link_to '一覧', admin_checkouts_path, class: 'nav-link' %>
+</nav>
+
+
+<h2 class="h2">order info</h2>
+
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th><%= Order.human_attribute_name(:firstname) %></th>
+      <td><%= @order.firstname %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:lastname) %></th>
+      <td><%= @order.lastname %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:username) %></th>
+      <td><%= @order.username %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:email) %></th>
+      <td><%= @order.email %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:address1) %></th>
+      <td><%= @order.address1 %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:address2) %></th>
+      <td><%= @order.address2 %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:country) %></th>
+      <td><%= @order.country %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:zip) %></th>
+      <td><%= @order.zip %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:ccname) %></th>
+      <td><%= @order.ccname %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:ccnumber) %></th>
+      <td><%= @order.ccnumber %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:ccexpiration) %></th>
+      <td><%= @order.ccexpiration %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:cccvv) %></th>
+      <td><%= @order.cccvv %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:created_at) %></th>
+      <td><%= @order.created_at %></td>
+    </tr>
+    <tr>
+      <th><%= Order.human_attribute_name(:updated_at) %></th>
+      <td><%= @order.updated_at %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="h2">order show</h2>
+
+<table class="table table-hover">
+  <tbody>
+    <% @order_detail.each do |item| %>
+      <tr>
+        <th><%= OrderDetail.human_attribute_name(:name) %></th>
+        <td><%= item.name %></td>
+      </tr>
+      <tr>
+        <th><%= OrderDetail.human_attribute_name(:quantity) %></th>
+        <td><%= item.quantity %></td>
+      </tr>
+      <tr>
+        <th><%= OrderDetail.human_attribute_name(:price) %></th>
+        <td><%= item.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

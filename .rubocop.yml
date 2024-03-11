@@ -19,8 +19,10 @@ Metrics/BlockLength:
 Layout/LineLength:
   Exclude:
     - config/initializers/devise.rb
-    - db/migrate/*.rb
+    - db/**/*.rb
 Hc/RailsSpecificActionName:
   Exclude:
     - app/controllers/users/omniauth_callbacks_controller.rb
     - app/controllers/concerns/*.rb
+RSpec/MultipleExpectations:
+  Enabled: false
