@@ -7,9 +7,15 @@ class CartsController < ApplicationController
 
   def index
     @cart_items = CartItem.joins(:item).where(cart_id: session[:cart_id]).select('cart_items.*, items.*')
-    @count = @current_cart.cart_items.count
-    @total = @current_cart.cart_items.inject(0) { |sum, item| sum + item.sum_price }
     @order = Order.new
+    @adaptedCode = Promotion.find_by(code: session[:code])
+    @count = @current_cart.cart_items.count
+
+    @total = @current_cart.cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    if @adaptedCode.present?
+      @total -= @adaptedCode.discount
+      session.delete(:code)
+    end
   end
 
   def create
@@ -50,5 +56,9 @@ class CartsController < ApplicationController
 
   def cart_params
     params.require(:cart_item).permit(:quantity)
+  end
+
+  def adaptedCode
+
   end
 end
