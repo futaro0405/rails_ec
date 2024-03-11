@@ -20,21 +20,29 @@
         <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
           <div class="text-success">
             <h6 class="my-0">Promo code</h6>
-            <small>EXAMPLECODE</small>
+            <% if @adapted_code.present? %>
+              <small><%= @adapted_code.code %></small>
+            <% else %>
+              <small>NOCODE</small>
+            <% end %>
           </div>
-          <span class="text-success">−$5</span>
+          <% if @adapted_code.present? %>
+            <span class="text-success">-<%= @adapted_code.discount %></span>
+          <% else %>
+            <span class="text-success">0</span>
+          <% end %>
         </li>
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (USD)</span>
-          <strong>$<%= @total %></strong>
+          <strong><%= @total %></strong>
         </li>
       </ul>
-      <form class="card p-2">
+      <%= form_with model: @promotion, url: promotions_path, local: true, class: "card p-2" do |f| %>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Promo code">
-          <button type="submit" class="btn btn-secondary">Redeem</button>
+          <%= f.text_field :code, class: "form-control", placeholder: "Promo code", id: 'promotion_code' %>
+          <%= f.submit "Redeem", class: 'btn btn-secondary' %>
         </div>
-      </form>
+      <% end %>
     </div>
     <div class="col-md-7 col-lg-8">
       <h4 class="mb-3">Billing address</h4>
@@ -43,84 +51,66 @@
           <div class="col-sm-6">
             <%= f.label :firstname, class: "form-label" %>
             <%= f.text_field :firstname, class: "form-control", id: 'order_firstname' %>
-
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
-
           <div class="col-sm-6">
             <%= f.label :lastname, class: "form-label" %>
             <%= f.text_field :lastname, class: "form-control", id: 'order_lastname' %>
-
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
           </div>
-
           <div class="col-12">
             <%= f.label :username, class: "form-label" %>
-
             <div class="input-group has-validation">
               <span class="input-group-text">@</span>
               <%= f.text_field :username, class: "form-control", id: 'order_username' %>
-
               <div class="invalid-feedback">
                 Your username is required.
               </div>
             </div>
           </div>
-
           <div class="col-12">
             <%= f.label :email, class: "form-label" do %>
               <span class="text-body-secondary">(Optional)</span>
             <% end %>
             <%= f.email_field :email, class: "form-control", id: 'order_email', placeholder: "you@example.com" %>
-
             <div class="invalid-feedback">
               Please enter a valid email address for shipping updates.
             </div>
           </div>
-
           <div class="col-12">
             <%= f.label :address1, class: "form-label" %>
             <%= f.text_field :address1, class: "form-control", id: 'order_address1', placeholder: "1234 Main St" %>
-
             <div class="invalid-feedback">
               Please enter your shipping address.
             </div>
           </div>
-
           <div class="col-12">
             <%= f.label :address2, class: "form-label" do %>
               <span class="text-body-secondary">(Optional)</span>
             <% end %>
-
             <%= f.text_field :address2, class: "form-control", id: 'order_address2', placeholder: "Apartment or suite" %>
           </div>
-
           <div class="col-md-5">
             <%= f.label :country, class: "form-label" %>
             <%= f.select :country, ["United States"], { include_blank: "Choose..." } %>
-
             <div class="invalid-feedback">
               Please select a valid country.
             </div>
           </div>
-
           <div class="col-md-4">
             <%= f.label :state, class: "form-label" %>
             <%= f.select :country, ["California"], { include_blank: "Choose..." } %>
-
             <div class="invalid-feedback">
               Please provide a valid state.
             </div>
           </div>
-
           <div class="col-md-3">
             <%= f.label :zip, class: "form-label" %>
             <%= f.text_field :zip, class: "form-control", id: 'order_zip' %>
-
             <div class="invalid-feedback">
               Zip code required.
             </div>
@@ -131,41 +121,33 @@
           <div class="col-md-6">
             <%= f.label :ccname, class: "form-label" %>
             <%= f.text_field :ccname, class: "form-control", id: 'order_ccname' %>
-
             <small class="text-body-secondary">Full name as displayed on card</small>
             <div class="invalid-feedback">
               Name on card is required
             </div>
           </div>
-
           <div class="col-md-6">
             <%= f.label :ccnumber, class: "form-label" %>
             <%= f.text_field :ccnumber, class: "form-control", id: 'order_ccnumber' %>
-
             <div class="invalid-feedback">
               Credit card number is required
             </div>
           </div>
-
           <div class="col-md-3">
             <%= f.label :ccexpiration, class: "form-label" %>
             <%= f.text_field :ccexpiration, class: "form-control", id: 'order_ccexpiration' %>
-
             <div class="invalid-feedback">
               Expiration date required
             </div>
           </div>
-
           <div class="col-md-3">
             <%= f.label :cccvv, class: "form-label" %>
             <%= f.text_field :cccvv, class: "form-control", id: 'order_cccvv' %>
-
             <div class="invalid-feedback">
               Security code required
             </div>
           </div>
         </div>
-
         <hr class="my-4">
         <%= f.submit "購入する", class: 'w-100 btn btn-primary btn-lg' %>
       <% end %>

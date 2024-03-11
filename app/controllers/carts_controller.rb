@@ -7,9 +7,15 @@ class CartsController < ApplicationController
 
   def index
     @cart_items = CartItem.joins(:item).where(cart_id: session[:cart_id]).select('cart_items.*, items.*')
-    @count = @current_cart.cart_items.count
-    @total = @current_cart.cart_items.inject(0) { |sum, item| sum + item.sum_price }
     @order = Order.new
+    @adapted_code = Promotion.find_by(code: session[:code])
+    @count = @current_cart.cart_items.count
+
+    @total = @current_cart.cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    return if @adapted_code.blank?
+
+    @total -= @adapted_code.discount
+    session.delete(:code)
   end
 
   def create
