@@ -1,17 +1,17 @@
+# frozen_string_literal: true
+
 class PromotionsController < ApplicationController
   before_action :basic_auth
 
   def index
-    def index
-      @promotions = Promotion.all
-    end
+    @promotions = Promotion.all
   end
 
-    private
+  private
 
-    def basic_auth
-      authenticate_or_request_with_http_basic do |username, password|
-        username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
-      end
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
     end
+  end
 end

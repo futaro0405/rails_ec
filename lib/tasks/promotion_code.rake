@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :promotion_code do
   desc 'create promotion code'
   task generate: :environment do
@@ -7,7 +9,7 @@ namespace :promotion_code do
     10.times do
       records.push(
         {
-          code: 7.times.map{ chars.sample }.join,
+          code: 7.times.map { chars.sample }.join,
           discount: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].sample
         }
       )
@@ -21,7 +23,7 @@ namespace :promotion_code do
           current = record
           Promotion.create!(
             code: record[:code],
-            discount: record[:discount],
+            discount: record[:discount]
           )
         end
       end
