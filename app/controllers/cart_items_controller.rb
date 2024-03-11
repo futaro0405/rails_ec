@@ -12,11 +12,4 @@ class CartItemsController < ApplicationController
       render carts_url, alert: 'Deletion failed. Please try agein.'
     end
   end
-
-  private
-
-  def set_current_cart
-    @current_cart = current_cart
-    session[:cart_id] ||= @current_cart.id
-  end
 end
