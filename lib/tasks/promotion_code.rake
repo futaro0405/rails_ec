@@ -1,6 +1,6 @@
-namespace :promotion do
+namespace :promotion_code do
   desc 'create promotion code'
-  task create_code: :environment do
+  task generate: :environment do
     records = []
     chars = ('A'..'Z').to_a + (0..9).to_a
 
@@ -16,6 +16,7 @@ namespace :promotion do
     begin
       current = nil
       ApplicationRecord.transaction do
+        Promotion.destroy_all
         records.each do |record|
           current = record
           Promotion.create!(

@@ -1,0 +1,20 @@
+<div class="mb-3">
+  <table class="table table-hover">
+    <thead class="thead-default">
+      <tr>
+        <th scope="col"><%= Promotion.human_attribute_name(:id) %></th>
+        <th scope="col"><%= Promotion.human_attribute_name(:code) %></th>
+        <th scope="col"><%= Promotion.human_attribute_name(:discount) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @promotions.each do |promotion| %>
+        <tr>
+          <td><%= promotion.id %></td>
+          <td><%= promotion.code %></td>
+          <td><%= promotion.discount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
